@@ -12,33 +12,25 @@ func abs(a int) int {
 	return a
 }
 func unification(a, b string) string {
-	counter := make(map[rune]int)
+	counter := make(map[rune]bool)
 	var result []rune
-
 	for _, elem := range a {
+		result = append(result, elem) //сразу заполняем массивом а
 		if _, ok := counter[elem]; !ok {
-			counter[elem] = 1 // если встретили в первый раз
-		} else {
-			counter[elem] += 1
+			counter[elem] = true //создаем мапу элементов
 		}
 	}
 	for _, elem := range b {
 		if _, ok := counter[elem]; !ok {
-			counter[elem] = -1 // если встретили в первый раз
-		} else if _, ok := counter[elem]; ok { //если есть добавляем еще
-			counter[elem] -= 1
-			//result = append(result, elem)
+			// если такого элемента не было в прошлом массиве
+			result = append(result, elem)
 		}
 	}
-	for key, value := range counter {
-		for i := 0; i < abs(value); i++ {
-			result = append(result, key)
-		}
-	}
+
 	return string(result)
 }
 func main() {
-	a := "aasaab"
-	b := "aaaabb"
-	fmt.Printf("%v\n", unification(a, b))
+	a := "ggaasaab"
+	b := "aasaabff"
+	fmt.Printf("%v\n", unification(a, b)) //ggaasaabff
 }
