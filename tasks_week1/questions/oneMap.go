@@ -25,7 +25,7 @@ func unification(a, b string) string {
 	for _, elem := range b {
 		if _, ok := counter[elem]; !ok {
 			counter[elem] = -1 // если встретили в первый раз
-		} else if _, ok := counter[elem]; ok { //если есть в мапе пишем в финальный массив
+		} else if _, ok := counter[elem]; ok { //если есть добавляем еще
 			counter[elem] -= 1
 			//result = append(result, elem)
 		}
